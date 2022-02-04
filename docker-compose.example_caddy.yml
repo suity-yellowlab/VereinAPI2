@@ -1,0 +1,26 @@
+version: '3.7'
+services:
+  vereinapi2:
+    image: vereinapi2
+    build: .
+    networks:
+      - caddy
+    labels:
+      caddy: yourdomainhere
+      caddy.reverse_proxy: "{{upstreams 80}}"
+      
+
+    environment:
+       - DBSettings__Host=yourhost
+       - DBSettings__UserID=userid
+       - DBSettings__Password=dbpass
+       - DBSettings__Database=dbname
+       - DBSettings__Port=3306
+       - AppSettings__Secret=yoursecret
+       - EmailSettings__Host=yourhost
+       - EmailSettings__Port=yourport
+networks:
+  caddy:
+    external: true
+volumes:
+   wwwroot: {}
