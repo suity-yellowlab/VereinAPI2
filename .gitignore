@@ -7,6 +7,9 @@ docker-compose.yml
 appsettings.json
 appsettings.Development.json
 launchSettings.json
+*.db
+*.db-shm
+*.db-wal
 .vscode
 caddy
 # User-specific files
