@@ -12,7 +12,7 @@ services:
        - DBSettings__Password=dbpass
        - DBSettings__Database=dbname
        - DBSettings__Port=3306
-       - AppSettings__Secret=yoursecret
+       - JWT__Secret=yoursecret
        - EmailSettings__Host=yourhost
        - EmailSettings__Port=yourport
 

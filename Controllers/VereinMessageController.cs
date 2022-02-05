@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using System.Net.Mail;
 using VereinAPI2.Db;
 using VereinAPI2.Helpers;
@@ -13,12 +14,11 @@ namespace VereinAPI2.Controllers
     {
        
         private readonly IEmailService emailService;
-        protected VereinMessageAccessProvider VMAP { get; }
-        public AppDbAccessProvider Db { get; }
-        public VereinMessageController(AppDbAccessProvider db, IEmailService emailService)
+
+        public VereinMessageController(IEmailService emailService)
         {  
-            Db = db;
-            VMAP = new VereinMessageAccessProvider(Db);
+
+
             this.emailService = emailService;
         }
         [HttpPost]

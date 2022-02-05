@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using VereinAPI2.Db;
 using VereinAPI2.Helpers;
 using VereinAPI2.Models;

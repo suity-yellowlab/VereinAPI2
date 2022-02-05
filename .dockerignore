@@ -1,3 +1,7 @@
+**/VereinDDL.sql
+**/Identity.db
+**/Identity.db-shm
+**/Identity.db-wal
 **/.classpath
 **/.dockerignore
 **/.env
