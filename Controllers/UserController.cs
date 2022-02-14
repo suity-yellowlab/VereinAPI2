@@ -28,16 +28,24 @@ namespace VereinAPI2.Controllers
             
            var res =  await _userManager.ChangePasswordAsync(user,changePassword.OldPassword,changePassword.NewPassword);
             if (!res.Succeeded) { throw new Exception($"PW Change failed {res.Errors.First().Description}"); }
+            
             return NoContent();
         
         }
         [Authorize(Roles = UserRoles.Admin)]
         [HttpGet]
-        public IList<UserModelDTO> GetAll() {
+        public async Task<IList<UserModelDTO>> GetAll() {
             
             var users =  _userManager.Users.ToList();            
             if (users == null) throw new Exception("Could not query users");
-            var dtos = users.Select(x => new UserModelDTO() { Username = x.UserName, Email = x.Email }).ToList() ;
+            List<UserModelDTO> dtos = new();
+            foreach (var user in users) {
+            var roles = await _userManager.GetRolesAsync(user);
+            dtos.Add(new UserModelDTO {Username = user.UserName,Email = user.Email, Roles = roles});
+            
+            }
+
+
             return dtos;
         
         }
