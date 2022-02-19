@@ -13,7 +13,6 @@ services:
        - DBSettings__Database=dbname
        - DBSettings__Port=3306
        - JWT__Secret=yoursecret
-       - 'ConnectionStrings__IdentityDB=Data Source=./IDFiles/Identity.db'
        - EmailSettings__Host=yourhost
        - EmailSettings__Port=yourport
 

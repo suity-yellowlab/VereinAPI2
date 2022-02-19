@@ -19,8 +19,10 @@ var builder = WebApplication.CreateBuilder(args);
     services.AddCors();
     services.AddControllers();
     // services.AddEndpointsApiExplorer();
+  
     services.Configure<DBSettings>(builder.Configuration.GetSection("DBSettings"));
-    services.AddDbContext<ApplicationDbContext>(options => options.UseSqlite(configuration.GetConnectionString("IdentityDB")));
+    Directory.CreateDirectory(SqliteSettings.Directory);
+    services.AddDbContext<ApplicationDbContext>(options => options.UseSqlite(SqliteSettings.ConnectionString));
     services.AddIdentity<IdentityUser, IdentityRole>(options =>
     {
         options.Password.RequireUppercase = false;
@@ -67,6 +69,7 @@ var services = scope.ServiceProvider;
     try
     {
         var context = services.GetRequiredService<ApplicationDbContext>();
+       
         DbInitializer.Initalize(context);
     }
     catch (Exception ex) {
